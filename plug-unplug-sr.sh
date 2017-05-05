@@ -30,7 +30,7 @@ menu() {
         echo "$MESSAGE"
     fi
     echo ""
-    echo "Choose what SR to unplug:"
+    echo "Choose what SR to (un)plug:"
     for i in ${!OPTIONS[@]}; do
         echo "  $(($i+1)) ) ${OPTIONS[i]}"
     done
