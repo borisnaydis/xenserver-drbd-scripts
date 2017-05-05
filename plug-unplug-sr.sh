@@ -112,7 +112,7 @@ while true; do
     menu && read -rp "$PROMPT" -t 10 INPUT
     
     #Check for correctness of input value
-    if [[ $INPUT =~ "^[0-9]+$" ]] && (( $INPUT <= ${#OPTIONS[@]} )); then
+    if [[ $INPUT =~ ^[0-9]+$ ]] && (( $INPUT <= ${#OPTIONS[@]} )); then
         #MESSAGE=$(drdbChangeStatus)
         MESSAGE=$(plugUnplugSR)
         echo 'Unplugging'
