@@ -48,7 +48,7 @@ drbdGetResourceByDevice() {
     DRBD_RESOURCE_LIST=($(drbd-overview | awk -F'[/: ]+' '{ print $3}'))
     
     for ENTRY in ${DRBD_RESOURCE_LIST[*]}; do
-        DRBD_MINOR=$(drbd-overview | grep $ENTRY | awk -F: '{ print $1 }' | sed 's\^  \\')
+        DRBD_MINOR=$(drbd-overview | grep $ENTRY | awk -F: '{ print $1 }' | sed 's\^ \\')
         if [[ $(echo "/dev/drbd$DRBD_MINOR") == $1 ]]; then
             echo "$ENTRY"
         fi
