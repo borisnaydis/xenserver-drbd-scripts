@@ -56,7 +56,7 @@ drbdGetResourceByDevice() {
 } #end of drbdGetResourceByDevice function
 
 drbdGetCurrentStatus() {
-    read DRBD_STATUS DRBD_LOCAL_ROLE DRBD_REMOTE_ROLE VG_NAME < <(drbd-overview | grep $DRBD_RESOURCE_NAME | awk -F'[/: ]+' '{ print $5 " " $6 " " $7 " " $13}')
+    read DRBD_STATUS DRBD_LOCAL_ROLE DRBD_REMOTE_ROLE VG_NAME < <(drbd-overview | grep $DRBD_RESOURCE_NAME | awk -F'[/: ]+' '{ print $5 " " $6 " " $7 " " $11}')
 }
 
 plugUnplugSR() {
