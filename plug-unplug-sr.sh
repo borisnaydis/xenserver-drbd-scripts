@@ -105,19 +105,16 @@ plugUnplugSR() {
 }
 
 
-
-
-PROMPT="Choose an option (screen refreshes every 10 seconds, press 'Ctrl+C' to exit): "
+PROMPT="Choose an option (screen refreshes every 10 seconds, press 'Ctrl+C' to exit, press 'Enter' to refresh): "
 while true; do
     menu && read -rp "$PROMPT" -t 10 INPUT
     
     #Check for correctness of input value
     if [[ $INPUT =~ ^[0-9]+$ ]] && (( $INPUT <= ${#OPTIONS[@]} )); then
-        #MESSAGE=$(drdbChangeStatus)
         MESSAGE=$(plugUnplugSR)
-        echo 'Unplugging'
+        echo '(Un)plugging'
     #Message for refresh
-    elif [[ -z ${INPUT+x} ]];then
+    elif [[ -z $INPUT ]]; then
         MESSAGE=""
         echo -e "Refreshing screen"
     else
