@@ -78,7 +78,7 @@ plugUnplugSR() {
             fi
             drbdadm primary $DRBD_RESOURCE_NAME
             drbdGetCurrentStatus
-            vgchange -ay $VG_NAME
+            vgchange -ay $VG_NAME --config global{metadata_read_only=0}
             xe pbd-plug uuid=$PBD_UUID
             xe sr-param-add uuid=$SR_UUID param-name=tags param-key="drbd_primary $HOST_NAME"
         elif [[ $DRBD_LOCAL_ROLE == "Primary" ]]; then
@@ -88,7 +88,7 @@ plugUnplugSR() {
                 else
                     xe sr-param-remove uuid=$SR_UUID param-name=tags param-key="drbd_primary $HOST_NAME"
                     xe pbd-unplug uuid=$PBD_UUID
-                    vgchange -an $VG_NAME
+                    vgchange -an $VG_NAME --config global{metadata_read_only=0}
                     drbdadm secondary $DRBD_RESOURCE_NAME
                     drbdGetCurrentStatus
                     #drbdadm net-options --protocol=C --allow-two-primaries=no $DRBD_RESOURCE_NAME
